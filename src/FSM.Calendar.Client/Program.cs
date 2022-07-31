@@ -12,16 +12,26 @@ namespace FSM.Calendar.Client;
 
 public class Program
 {
+    public static IConfigurationRoot Configuration { get; set; }
+
     public static async Task Main(string[] args)
     {
-        IConfiguration configuration = new ConfigurationBuilder()
+        var devEnvironmentVariable = Environment.GetEnvironmentVariable("NETCORE_ENVIRONMENT");
+        var isDevelopment = string.IsNullOrEmpty(devEnvironmentVariable) || devEnvironmentVariable.ToLower() == "development";
+
+        var configurationBuilder = new ConfigurationBuilder()
                                        .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                                       .AddEnvironmentVariables()
-                                       .AddCommandLine(args)
-                                       .Build();
+                                       .AddEnvironmentVariables();
+
+        if(isDevelopment)
+        {
+            configurationBuilder.AddUserSecrets<Program>();
+        }
+
+        Configuration = configurationBuilder.Build();
 
         var serviceProvider = new ServiceCollection()
-                              .AddPersistenceServices(configuration)
+                              .AddPersistenceServices(Configuration)
                               .AddApplicationServices()
                               .BuildServiceProvider();
 
@@ -29,11 +39,11 @@ public class Program
 
         await mediator!.Send(new SeedSampleDataCommand());
         
-        await mediator!.Send(new CloneSlotCommand(4, DateOnly.Parse("2022-07-29")));
+        //await mediator!.Send(new CloneSlotCommand(4, DateOnly.Parse("2022-07-29")));
             
         var response  = await mediator!.Send(new GetSlotsByIntervalQuery(DateOnly.Parse("2022-02-22"), DateOnly.Parse("2022-02-28")));
         
-        var response2  = await mediator!.Send(new GetSlotsByIntervalQuery(DateOnly.Parse("2022-03-01"), DateOnly.Parse("2022-03-28")));
+        //var response2  = await mediator!.Send(new GetSlotsByIntervalQuery(DateOnly.Parse("2022-03-01"), DateOnly.Parse("2022-03-28")));
             
         Console.WriteLine("Hello World");
     }
