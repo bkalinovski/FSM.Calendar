@@ -37,6 +37,7 @@ public class GetSlotsByIntervalQuery : IRequest<SlotsListVm>
                                       .OrderBy(e => e.Date)
                                       .ThenBy(t => t.FromTime)
                                       .ThenBy(t => t.ToTime)
+                                      .AsNoTracking()
                                       .ToListAsync(cancellationToken);
 
             var vm = new SlotsListVm

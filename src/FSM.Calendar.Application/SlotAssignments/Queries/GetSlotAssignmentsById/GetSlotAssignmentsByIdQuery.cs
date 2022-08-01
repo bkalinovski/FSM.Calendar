@@ -33,6 +33,7 @@ public class GetSlotAssignmentsByIdQuery : IRequest<SlotsProcessesVm>
         {
             var slot = await _context.Slots
                                      .ProjectTo<SlotDto>(_mapper.ConfigurationProvider)
+                                     .AsNoTracking()
                                      .FirstOrDefaultAsync(t => t.Id == request.Id, cancellationToken);
 
             if (slot == null)
@@ -43,16 +44,19 @@ public class GetSlotAssignmentsByIdQuery : IRequest<SlotsProcessesVm>
             var processAliases = await _context.ProcessAliases
                                               .ProjectTo<ProcessAliasDto>(_mapper.ConfigurationProvider)
                                               .OrderBy(e => e.Name)
+                                              .AsNoTracking()
                                               .ToListAsync(cancellationToken);
             
             var territoryAliases = await _context.TerritoryAliases
                                                 .ProjectTo<TerritoryAliasDto>(_mapper.ConfigurationProvider)
                                                 .OrderBy(e => e.Name)
+                                                .AsNoTracking()
                                                 .ToListAsync(cancellationToken);
             
             var slotAssignments = await  _context.SlotAssignments
                                                  .Where(t => t.SlotId == request.Id)
                                                  .ProjectTo<SlotAssignmentDto>(_mapper.ConfigurationProvider)
+                                                 .AsNoTracking()
                                                  .ToListAsync(cancellationToken);
 
             var vm = new SlotsProcessesVm
