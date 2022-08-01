@@ -1,7 +1,7 @@
 ﻿using FSM.Calendar.Application;
 using FSM.Calendar.Application.Slots.Queries.GetSlotsByInterval;
-using FSM.Calendar.Application.System.Commands.CloneSlot;
-using FSM.Calendar.Application.System.Commands.CloneWeek;
+using FSM.Calendar.Application.Slots.Commands.CloneSlot;
+using FSM.Calendar.Application.Slots.Commands.CloneWeek;
 using FSM.Calendar.Application.System.Commands.SeedSampleData;
 using FSM.Calendar.Persistance;
 using MediatR;
@@ -39,7 +39,7 @@ public class Program
 
         await mediator!.Send(new SeedSampleDataCommand());
         
-        //await mediator!.Send(new CloneSlotCommand(4, DateOnly.Parse("2022-07-29")));
+        await mediator!.Send(new CloneSlotCommand(3, DateOnly.Parse("2022-08-01")));
             
         var response  = await mediator!.Send(new GetSlotsByIntervalQuery(DateOnly.Parse("2022-02-22"), DateOnly.Parse("2022-02-28")));
         

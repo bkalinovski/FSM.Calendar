@@ -2,7 +2,7 @@
 using FSM.Calendar.Application.Common.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace FSM.Calendar.Application.System.Commands.CloneWeek;
+namespace FSM.Calendar.Application.Slots.Commands.CloneWeek;
 
 public class CloneWeekCommandValidator : AbstractValidator<CloneWeekCommand>
 {

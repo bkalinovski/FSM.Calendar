@@ -3,7 +3,7 @@ using FSM.Calendar.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace FSM.Calendar.Application.System.Commands.CloneWeek;
+namespace FSM.Calendar.Application.Slots.Commands.CloneWeek;
 
 public class CloneWeekCommand : IRequest
 {

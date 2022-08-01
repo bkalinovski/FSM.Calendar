@@ -4,7 +4,7 @@ using FSM.Calendar.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace FSM.Calendar.Application.System.Commands.CloneSlot;
+namespace FSM.Calendar.Application.Slots.Commands.CloneSlot;
 
 public class CloneSlotCommand : IRequest
 {
