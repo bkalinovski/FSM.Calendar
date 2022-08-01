@@ -4,7 +4,7 @@ using FSM.Calendar.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace FSM.Calendar.Application.SlotAssignments.Commands.UpdateSLotAssignment;
+namespace FSM.Calendar.Application.SlotAssignments.Commands.UpdateSlotAssignment;
 
 public record UpdateSlotAssignmentCommand(int SlotId, int ProcessAliasId, int TerritoryAliasId, int TotalCases) : IRequest
 {

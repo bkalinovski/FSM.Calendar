@@ -2,7 +2,7 @@
 using FSM.Calendar.Application.Common.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace FSM.Calendar.Application.SlotAssignments.Commands.UpdateSLotAssignment;
+namespace FSM.Calendar.Application.SlotAssignments.Commands.UpdateSlotAssignment;
 
 public class UpdateSlotAssignmentCommandValidator : AbstractValidator<UpdateSlotAssignmentCommand>
 {
