@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSM.Calendar.Client", "FSM.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSM.Calendar.Persistance", "FSM.Calendar.Persistance\FSM.Calendar.Persistance.csproj", "{36C61D6B-8CE9-429A-ACC2-E6631C40EFBD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSM.Calendar.Web", "FSM.Calendar.Web\FSM.Calendar.Web.csproj", "{32155B8C-8CC5-4DA6-994A-8F137E133CEB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{36C61D6B-8CE9-429A-ACC2-E6631C40EFBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36C61D6B-8CE9-429A-ACC2-E6631C40EFBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36C61D6B-8CE9-429A-ACC2-E6631C40EFBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32155B8C-8CC5-4DA6-994A-8F137E133CEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32155B8C-8CC5-4DA6-994A-8F137E133CEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32155B8C-8CC5-4DA6-994A-8F137E133CEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32155B8C-8CC5-4DA6-994A-8F137E133CEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

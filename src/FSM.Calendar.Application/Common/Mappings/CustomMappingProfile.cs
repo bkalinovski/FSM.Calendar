@@ -14,6 +14,8 @@ public class CustomMappingProfile : Profile
         CreateMap<ProcessAlias, ProcessAliasDto>();
         
         CreateMap<TerritoryAlias, TerritoryAliasDto>();
+        
+        CreateMap<Territory, TerritoryDto>();
 
         CreateMap<SlotAssignment, SlotAssignmentDto>()
             .ForMember(t => t.MaxCount, expression => expression.MapFrom(t => t.TotalCases));

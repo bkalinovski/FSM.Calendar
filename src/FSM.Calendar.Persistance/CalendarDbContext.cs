@@ -53,6 +53,7 @@ public class CalendarDbContext : DbContext, ICalendarDbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        //modelBuilder.HasDefaultSchema("fsm-calendar");
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(CalendarDbContext).Assembly);
     }
 }

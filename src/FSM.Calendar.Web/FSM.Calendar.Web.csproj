@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <ProjectReference Include="..\FSM.Calendar.Persistance\FSM.Calendar.Persistance.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>c2721444-6bbd-45ea-8268-fc758193dbca</UserSecretsId>
+  </PropertyGroup>
+
+</Project>

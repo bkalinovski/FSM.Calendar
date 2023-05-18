@@ -1,0 +1,32 @@
+﻿@page "/"
+
+<PageTitle>Slots page</PageTitle>
+
+<PeriodSelector PeriodSet="@(period => RetrieveSlotsByPeriodAsync(period.fromDate, period.toDate))"></PeriodSelector>
+
+@if (SlotList == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Time</th>
+            <th>Date</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var slot in SlotList.Slots)
+        {
+            <tr>
+                <td>@slot.FromTime - @slot.ToTime</td>
+                <td>@slot.Date.ToString("yyyy-MM-dd")</td>
+                <td @onclick="_ => OpenSlot(slot.Id)" style="cursor: pointer">@slot.Description</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
