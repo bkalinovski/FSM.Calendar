@@ -5,7 +5,7 @@ namespace FSM.Calendar.Web.Shared;
 public partial class PeriodSelector
 {
     private const string DateFormat = "yyyy-MM-dd";
-    private const int WeekInterval = 7;
+    private const int WeekInterval = 8;
     private DateOnly FromDate { get; set; }
     private DateOnly ToDate { get; set; }
     

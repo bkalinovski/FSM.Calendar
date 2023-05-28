@@ -1,32 +1,78 @@
 ﻿@page "/"
 
+<style>
+    .index-page {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .index-page__button {
+        outline: none;
+        border: none;
+        background-color: #5c636a;
+        color: white;
+        padding: 10px;
+        text-align: center;
+    }
+    
+    .index-page__button:hover {
+        background-color: #4f5050;
+    }
+    
+    .index-page__header {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .index-page__content {
+    
+    }
+    
+    .table td {
+        vertical-align: baseline;
+    }
+
+</style>
+
 <PageTitle>Slots page</PageTitle>
 
-<PeriodSelector PeriodSet="@(period => RetrieveSlotsByPeriodAsync(period.fromDate, period.toDate))"></PeriodSelector>
-
-@if (SlotList == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Time</th>
-            <th>Date</th>
-            <th>Description</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (var slot in SlotList.Slots)
+<div class="index-page">
+    <div class="index-page__header">
+        <PeriodSelector PeriodSet="@(period => RetrieveSlotsByPeriodAsync(period.fromDate, period.toDate))"></PeriodSelector>
+        <button type="button" class="index-page__button">New slot</button>
+    </div>
+    
+    <div class="index-page__content">
+        @if (SlotList == null)
         {
-            <tr>
-                <td>@slot.FromTime - @slot.ToTime</td>
-                <td>@slot.Date.ToString("yyyy-MM-dd")</td>
-                <td @onclick="_ => OpenSlot(slot.Id)" style="cursor: pointer">@slot.Description</td>
-            </tr>
+            <p><em>Loading...</em></p>
         }
-        </tbody>
-    </table>
-}
+        else
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var slot in SlotList.Slots)
+                {
+                    <tr>
+                        <td>@slot.FromTime - @slot.ToTime</td>
+                        <td>@slot.Date.ToString("yyyy-MM-dd")</td>
+                        <td>@slot.Description</td>
+                        <td>
+                            <button class="index-page__button" type="button" @onclick="_ => OpenSlot(slot.Id)">Open</button>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        }  
+    </div>
+</div>

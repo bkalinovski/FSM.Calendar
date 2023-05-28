@@ -16,6 +16,8 @@ public class CustomMappingProfile : Profile
         CreateMap<TerritoryAlias, TerritoryAliasDto>();
         
         CreateMap<Territory, TerritoryDto>();
+        
+        CreateMap<Team, TeamDto>();
 
         CreateMap<SlotAssignment, SlotAssignmentDto>()
             .ForMember(t => t.MaxCount, expression => expression.MapFrom(t => t.TotalCases));

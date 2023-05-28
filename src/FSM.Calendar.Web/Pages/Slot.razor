@@ -1,3 +1,80 @@
 ﻿@page "/slots/{slotid:int}"
 
-<h1>@SlotDetails.Description</h1>
+<style>
+    .slot-page {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100vw;
+        overflow: scroll;
+    }
+    
+    .slot-page__title {
+        margin: 0;
+        padding: 0;
+        display: block;
+    }
+    
+    .slot-page__table {
+        
+        border: 1px solid black;
+    }
+    
+    .slot-page__table td {
+        width: 100px;
+        height: 100px;
+        box-sizing: border-box;
+        padding: 5px;
+        border: 1px solid black;
+        text-align: center;
+    }
+    
+    .slot-page__table__selectable-cell {
+        cursor: pointer;
+    }
+    
+    .slot-page__table__selectable-cell:hover {
+        background-color: lightsteelblue;
+    }
+</style>
+
+@if (SlotDetails != null)
+{
+    <div class="slot-page">
+        <h1 class="slot-page__title">@SlotDetails.Description</h1>
+        <table class="slot-page__table">
+            <thead>
+            <tr>
+                <td>Territory/Team</td>
+                @foreach (var territory in Territories)
+                {
+                    <td>@territory.Name</td>
+                }
+            </tr>
+            </thead>
+            <tbody>
+                @foreach (var team in Teams)
+                {
+                    <tr>
+                        <td>@team.Name</td>
+                        @foreach (var territory in Territories)
+                        {
+                            {
+                                var isAssigned = TeamAssignments.Any(t => t.TeamId == team.Id && t.TerritoryId == territory.Id);
+
+                                if (isAssigned)
+                                {
+                                    <td>+</td>
+                                }
+                                else
+                                {
+                                    <td class="slot-page__table__selectable-cell" @onclick="async () => await AssignTeam(team.Id, territory.Id)"></td>
+                                }
+                            }
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

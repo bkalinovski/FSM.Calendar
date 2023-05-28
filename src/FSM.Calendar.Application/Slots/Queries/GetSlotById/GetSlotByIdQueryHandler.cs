@@ -25,8 +25,22 @@ public class GetSlotByIdQueryHandler : IRequestHandler<GetSlotByIdQuery, SlotByI
                                         .ProjectTo<TerritoryDto>(_mapper.ConfigurationProvider)
                                         .AsNoTracking()
                                         .ToListAsync(cancellationToken);
+        
+        var teams = await _context.Teams
+            .ProjectTo<TeamDto>(_mapper.ConfigurationProvider)
+            .AsNoTracking()
+            .ToListAsync(cancellationToken);
 
-        var vm = new SlotByIdVm(_mapper.Map<SlotDto>(slot), territories);
+        var teamAssignments = await _context.TeamAssignments
+            .Where(t => t.SlotId == request.id)
+            .AsNoTracking()
+            .Select(t => new SlotByIdVm.TeamAssignmentDto()
+            {
+                TeamId = t.TeamId,
+                TerritoryId = t.TerritoryId
+            }).ToListAsync(cancellationToken);
+
+        var vm = new SlotByIdVm(_mapper.Map<SlotDto>(slot), territories, teams, teamAssignments);
                  
         return vm;
     }
